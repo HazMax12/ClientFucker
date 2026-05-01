@@ -1,10 +1,19 @@
-Start-Process powershell -ArgumentList '-ExecutionPolicy Bypass -NoExit -Command "Invoke-RestMethod https://raw.githubusercontent.com/zedoonvm1/powershell-scripts/refs/heads/main/DoomsDayDetector.ps1 | Invoke-Expression"'
+$cmd1 = 'Invoke-RestMethod https://raw.githubusercontent.com/zedoonvm1/powershell-scripts/refs/heads/main/DoomsDayDetector.ps1 | Invoke-Expression'
+$cmd2 = 'Invoke-RestMethod https://raw.githubusercontent.com/praiselily/lilith-ps/refs/heads/main/Services.ps1 | Invoke-Expression'
+$cmd3 = 'Invoke-RestMethod https://raw.githubusercontent.com/MeowTonynoh/MeowModAnalyzer/main/MeowModAnalyzer.ps1 | Invoke-Expression'
+$cmd4 = 'Invoke-RestMethod https://raw.githubusercontent.com/JavaXYZZ/ScreenSharing/main/McTools.ps1 | Invoke-Expression'
 
-Start-Process powershell -ArgumentList '-ExecutionPolicy Bypass -NoExit -Command "Invoke-RestMethod https://raw.githubusercontent.com/praiselily/lilith-ps/refs/heads/main/Services.ps1 | Invoke-Expression"'
+function Start-Encoded {
+    param($cmd)
+    $bytes = [System.Text.Encoding]::Unicode.GetBytes($cmd)
+    $encoded = [Convert]::ToBase64String($bytes)
+    Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -NoExit -EncodedCommand $encoded"
+}
 
-Start-Process powershell -ArgumentList '-ExecutionPolicy Bypass -NoExit -Command "Invoke-RestMethod https://raw.githubusercontent.com/MeowTonynoh/MeowModAnalyzer/main/MeowModAnalyzer.ps1 | Invoke-Expression"'
-
-Start-Process powershell -ArgumentList '-ExecutionPolicy Bypass -NoExit -Command "Invoke-RestMethod https://raw.githubusercontent.com/JavaXYZZ/ScreenSharing/main/McTools.ps1 | Invoke-Expression"'
+Start-Encoded $cmd1
+Start-Encoded $cmd2
+Start-Encoded $cmd3
+Start-Encoded $cmd4
 
 Start-Process "shell:recent"
 Start-Process $env:TEMP
