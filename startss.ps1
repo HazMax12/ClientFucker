@@ -1,7 +1,6 @@
 $cmd1 = 'Invoke-RestMethod https://raw.githubusercontent.com/zedoonvm1/powershell-scripts/refs/heads/main/DoomsDayDetector.ps1 | Invoke-Expression'
-$cmd2 = 'Invoke-RestMethod https://raw.githubusercontent.com/praiselily/lilith-ps/refs/heads/main/Services.ps1 | Invoke-Expression'
-$cmd3 = 'Invoke-RestMethod https://raw.githubusercontent.com/MeowTonynoh/MeowModAnalyzer/main/MeowModAnalyzer.ps1 | Invoke-Expression'
-$cmd4 = 'Invoke-RestMethod https://raw.githubusercontent.com/JavaXYZZ/ScreenSharing/main/McTools.ps1 | Invoke-Expression'
+$cmd2 = 'Invoke-RestMethod https://raw.githubusercontent.com/piespeas/MyPowerShellScripts-ssing/refs/heads/main/ss_starter.ps1 | Invoke-Expression'
+$cmd3 = 'Invoke-RestMethod https://raw.githubusercontent.com/JavaXYZZ/ScreenSharing/main/McTools.ps1 | Invoke-Expression'
 
 function Start-Encoded {
     param($cmd)
